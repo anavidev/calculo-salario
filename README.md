@@ -22,8 +22,8 @@ Aplicação que calcula o salário líquido fictício de um funcionário e deter
 **OBS:** Todos os cálculos seguem as regras estabelecidas para o ano de 2024.
 
 - **Salário Líquido:** Salário Bruto - Descontos
-- **INSS:** Salário * Alíquota do INSS - Dedução
-- **IRRF:** Salário * Alíquota do IRRF - Dedução
+- **INSS:** Calculado com alíquotas progressivas, aplicadas por faixa salarial, considerando possíveis deduções e limites.
+- **IRRF:** Calculado sobre a base de cálculo (Salário Bruto - INSS), utilizando as alíquotas progressivas e deduções previstas na tabela.
 - **FGTS:** Salário Bruto * 0.08
 - **1ª Parcela do 13º Salário:** Salário Bruto * 0.5
 - **2ª Parcela do 13º Salário:** Salário Bruto * 0.5 - (INSS + IRRF)

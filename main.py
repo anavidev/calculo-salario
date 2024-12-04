@@ -21,10 +21,10 @@ print(desconto_obrigatorio)
 print("\n\n")
 
 # calculo do inss
-desconto_obrigatorio["Desconto_INSS"] = (7786.02 * (desconto_obrigatorio["INSS"] / 100) - 181.18)
+desconto_obrigatorio["Desconto_INSS"] = 105.90 + 99.22 + 160.00 + 433.86
 
 # calculo do irrf
-desconto_obrigatorio["Desconto_IRRF"] = (desconto_obrigatorio["Salario_Bruto"] * (desconto_obrigatorio["IRRF"] / 100) - 896)
+desconto_obrigatorio["Desconto_IRRF"] = (desconto_obrigatorio["Salario_Bruto"] - desconto_obrigatorio["Desconto_INSS"]) * (desconto_obrigatorio["IRRF"] / 100) - 896
 
 # calculo do fgts
 desconto_obrigatorio["Desconto_FGTS"] = desconto_obrigatorio["Salario_Bruto"] * (desconto_obrigatorio["FGTS"] / 100)
@@ -78,8 +78,9 @@ desconto_extra["13_Salario_2"] = desconto_extra.apply(
 
 # calculo de salario de ferias
 desconto_inss = desconto_obrigatorio["Desconto_INSS"].iloc[0]
+desconto_irrf = desconto_obrigatorio["Desconto_IRRF"].iloc[0]
 desconto_extra["Ferias"] = desconto_extra.apply(
-    lambda row: row["Salario_Bruto"] / 3 - (desconto_inss + (row["Salario_Bruto"] * 0.275 - 896))
+    lambda row: row["Salario_Bruto"] / 3 - (desconto_inss + desconto_irrf)
     if row["Meses"] == "Ago" else 0.00,
     axis = 1
 )
